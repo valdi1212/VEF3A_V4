@@ -1,12 +1,14 @@
 <?php
+namespace Loc\Controllers;
 
-include '../Router.php';
+//include __DIR__ . "/../Router.php";
+use \Loc\Router;
 
 class FrontController {
     private $controller;
     private $view;
 
-    public function __construct(Router $router, $routeName, $action = null)
+    public function __construct(Router $router, $routeName)
     {
         $route = $router->getRoute($routeName);
 
@@ -17,13 +19,10 @@ class FrontController {
         $model = new $modelName;
         $this->controller = new $controllerName($model);
         $this->view = new $viewName($model);
-
-        if(!empty($action)) $this->controller->{$action}();
     }
 
     public function output()
     {
-        $header = '<h1>Header</h1>';
-        return $header . '<div>' . $this->view->output() . '</div>';
+        return '<div>' . $this->view->output() . '</div>';
     }
 }

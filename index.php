@@ -1,10 +1,9 @@
 <?php
 
-include 'Models/BookModel.php';
-include "Views/BookView.php";
-include "Controllers/BookController.php";
+require __DIR__ . '/vendor/autoload.php';
 
-$model = new BookModel();
-$controller = new BookController($model);
-$view = new BookView($model);
-echo $view->output();
+use Loc\Controllers\FrontController;
+use Loc\Router;
+
+$frontController = new FrontController(new Router, 'books'); //TODO: route hardcoded at the moment, kinda defeats the purpose
+echo $frontController->output();

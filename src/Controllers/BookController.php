@@ -1,4 +1,7 @@
 <?php
+namespace Loc\Controllers;
+
+use \Loc\Models\BookModel;
 
 class BookController
 {
